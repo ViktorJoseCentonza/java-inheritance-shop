@@ -2,7 +2,7 @@ package org.lessons.shop;
 
 import java.math.BigDecimal;
 
-public class Flatscreen extends Prodotto {
+public class Flatscreen extends Product {
     protected int screenSize = 0;
     protected boolean isSmart = false;
 
@@ -35,6 +35,14 @@ public class Flatscreen extends Prodotto {
 
     public void setIsFlatscreenSmart(boolean newIsSmart) {
         this.isSmart = newIsSmart;
+    }
+
+    @Override
+    public String toString() {
+        return " Flatscreen name: " + this.name + "\n Flatscreen brand: " + this.brand + "\n Flatscreen price: "
+                + this.price
+                + "\n Flatscreen Iva: " + this.iva + "\n Flatscreen code: " + this.code + "\n Flatscreen screen size: "
+                + this.screenSize + "\n Flatscreen is smart: " + this.isSmart;
     }
 
 }

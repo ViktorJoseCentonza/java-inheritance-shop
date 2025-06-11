@@ -2,7 +2,7 @@ package org.lessons.shop;
 
 import java.math.BigDecimal;
 
-public class Smartphone extends Prodotto {
+public class Smartphone extends Product {
     protected long imei = 0l;
     protected int deviceMemory = 0;
 
@@ -28,6 +28,14 @@ public class Smartphone extends Prodotto {
                                    // be assigned as null
             this.deviceMemory = newDeviceMemory;
         }
+    }
+
+    @Override
+    public String toString() {
+        return " Smartphone name: " + this.name + "\n Smartphone brand: " + this.brand + "\n Smartphone price: "
+                + this.price
+                + "\n Smartphone Iva: " + this.iva + "\n Smartphone code: " + this.code + "\n Smartphone memory: "
+                + this.deviceMemory + "\n Smartphone IMEI: " + this.imei;
     }
 
 }

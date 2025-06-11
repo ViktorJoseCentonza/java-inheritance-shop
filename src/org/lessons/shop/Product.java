@@ -12,14 +12,14 @@ import java.math.BigDecimal;
 
 // Utilizzate l’ereditarietà per riutilizzare il codice di Prodotto nella stesura delle classi che gestiscono i vari sotto tipi di prodotto.
 
-public class Prodotto {
+public class Product {
     protected int code;
     protected String name = "";
     protected String brand = "";
     protected BigDecimal price = new BigDecimal("0");
     protected Float iva = 0f;
 
-    public Prodotto(String name, String brand, BigDecimal price, Float iva) {
+    public Product(String name, String brand, BigDecimal price, Float iva) {
         this.code = (int) (Math.random() * 99999) + 1;
         this.name = name;
         this.brand = brand;
@@ -78,6 +78,12 @@ public class Prodotto {
         if (newProductIva != null && newProductIva >= 0f) {
             this.iva = newProductIva;
         }
+    }
+
+    @Override
+    public String toString() {
+        return " Product name: " + this.name + "\n Product brand: " + this.brand + "\n Product price: " + this.price
+                + "\n Product Iva: " + this.iva + "\n Product code: " + this.code;
     }
 
 }
