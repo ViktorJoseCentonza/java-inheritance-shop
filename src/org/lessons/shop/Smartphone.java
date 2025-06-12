@@ -6,7 +6,7 @@ public class Smartphone extends Product {
     protected long imei = 0l;
     protected int deviceMemory = 0;
 
-    public Smartphone(String name, String brand, BigDecimal price, Float iva, int deviceMemory) {
+    public Smartphone(String name, String brand, BigDecimal price, BigDecimal iva, int deviceMemory) {
         super(name, brand, price, iva);
         this.imei = (long) (Math.random() * 9_000_000_000_000_000L) + 1_000_000_000_000_000L; // _ used as a comma, not
                                                                                               // read by the compiler
@@ -31,10 +31,22 @@ public class Smartphone extends Product {
     }
 
     @Override
+    public void setProductFinalPrice(boolean hasFideltyCard) {
+
+        if (hasFideltyCard) {
+            if (this.deviceMemory < 32) {
+                this.finalPrice = this.finalPrice.subtract(this.finalPrice.multiply(Cart.discount5));
+            }
+            this.finalPrice = this.finalPrice.subtract(this.finalPrice.multiply(Cart.discount2));
+        }
+    }
+
+    @Override
     public String toString() {
         return " Smartphone name: " + this.name + "\n Smartphone brand: " + this.brand + "\n Smartphone price: "
                 + this.price
-                + "\n Smartphone Iva: " + this.iva + "\n Smartphone code: " + this.code + "\n Smartphone memory: "
+                + "\n Smartphone Iva: " + this.iva + "\n final price is: "
+                + this.finalPrice + "\n Smartphone code: " + this.code + "\n Smartphone memory: "
                 + this.deviceMemory + "\n Smartphone IMEI: " + this.imei;
     }
 

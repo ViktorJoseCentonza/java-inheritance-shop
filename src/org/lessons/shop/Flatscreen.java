@@ -6,7 +6,7 @@ public class Flatscreen extends Product {
     protected int screenSize = 0;
     protected boolean isSmart = false;
 
-    public Flatscreen(String name, String brand, BigDecimal price, Float iva, int screenSize, boolean isSmart) {
+    public Flatscreen(String name, String brand, BigDecimal price, BigDecimal iva, int screenSize, boolean isSmart) {
         super(name, brand, price, iva);
         this.screenSize = screenSize;
         this.isSmart = isSmart;
@@ -38,10 +38,21 @@ public class Flatscreen extends Product {
     }
 
     @Override
+    public void setProductFinalPrice(boolean hasFideltyCard) {
+        if (hasFideltyCard) {
+            if (this.isSmart == false) {
+                this.finalPrice = this.finalPrice.subtract(this.finalPrice.multiply(Cart.discount10));
+            }
+            this.finalPrice = this.finalPrice.subtract(this.finalPrice.multiply(Cart.discount2));
+        }
+    }
+
+    @Override
     public String toString() {
         return " Flatscreen name: " + this.name + "\n Flatscreen brand: " + this.brand + "\n Flatscreen price: "
                 + this.price
-                + "\n Flatscreen Iva: " + this.iva + "\n Flatscreen code: " + this.code + "\n Flatscreen screen size: "
+                + "\n Flatscreen Iva: " + this.iva + "\n final price is: "
+                + this.finalPrice + "\n Flatscreen code: " + this.code + "\n Flatscreen screen size: "
                 + this.screenSize + "\n Flatscreen is smart: " + this.isSmart;
     }
 

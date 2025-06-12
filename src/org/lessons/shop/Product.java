@@ -1,6 +1,7 @@
 package org.lessons.shop;
 
 import java.math.BigDecimal;
+import java.math.BigInteger;
 
 // Creare la classe Prodotto che gestisce i prodotti dello shop.
 
@@ -16,15 +17,17 @@ public class Product {
     protected int code;
     protected String name = "";
     protected String brand = "";
-    protected BigDecimal price = new BigDecimal("0");
-    protected Float iva = 0f;
+    protected BigDecimal price = new BigDecimal(BigInteger.ZERO, 2);
+    protected BigDecimal iva = new BigDecimal(BigInteger.ZERO, 2);
+    protected BigDecimal finalPrice = new BigDecimal(BigInteger.ZERO, 2);
 
-    public Product(String name, String brand, BigDecimal price, Float iva) {
+    public Product(String name, String brand, BigDecimal price, BigDecimal iva) {
         this.code = (int) (Math.random() * 99999) + 1;
         this.name = name;
         this.brand = brand;
         this.price = price;
         this.iva = iva;
+        this.finalPrice = this.price.add(this.price.multiply(this.iva));
     }
 
     public int getProductCode() {
@@ -68,22 +71,29 @@ public class Product {
         }
     }
 
-    public Float getProductIva() {
+    public BigDecimal getProductIva() {
 
         System.out.println(this.name + "'s iva is:" + this.iva);
         return this.iva;
     }
 
-    public void setProductIva(Float newProductIva) {
-        if (newProductIva != null && newProductIva >= 0f) {
+    public void setProductIva(BigDecimal newProductIva) {
+        if (newProductIva != null && newProductIva.compareTo(BigDecimal.ZERO) > 0) {
             this.iva = newProductIva;
+        }
+    }
+
+    public void setProductFinalPrice(boolean hasFideltyCard) {
+        if (hasFideltyCard) {
+            this.finalPrice = this.finalPrice.subtract(this.finalPrice.multiply(Cart.discount2));
         }
     }
 
     @Override
     public String toString() {
         return " Product name: " + this.name + "\n Product brand: " + this.brand + "\n Product price: " + this.price
-                + "\n Product Iva: " + this.iva + "\n Product code: " + this.code;
+                + "\n Product Iva: " + this.iva + "\n final price is: "
+                + this.finalPrice + "\n Product code: " + this.code;
     }
 
 }
