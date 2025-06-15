@@ -36,8 +36,10 @@ public class Smartphone extends Product {
         if (hasFideltyCard) {
             if (this.deviceMemory < 32) {
                 this.finalPrice = this.finalPrice.subtract(this.finalPrice.multiply(Cart.discount5));
+            } else {
+                this.finalPrice = this.finalPrice.subtract(this.finalPrice.multiply(Cart.discount2));
             }
-            this.finalPrice = this.finalPrice.subtract(this.finalPrice.multiply(Cart.discount2));
+
         }
     }
 

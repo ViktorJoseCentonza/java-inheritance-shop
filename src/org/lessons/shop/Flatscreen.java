@@ -42,8 +42,9 @@ public class Flatscreen extends Product {
         if (hasFideltyCard) {
             if (this.isSmart == false) {
                 this.finalPrice = this.finalPrice.subtract(this.finalPrice.multiply(Cart.discount10));
+            } else {
+                this.finalPrice = this.finalPrice.subtract(this.finalPrice.multiply(Cart.discount2));
             }
-            this.finalPrice = this.finalPrice.subtract(this.finalPrice.multiply(Cart.discount2));
         }
     }
 

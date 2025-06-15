@@ -45,8 +45,9 @@ public class Headphones extends Product {
         if (hasFideltyCard) {
             if (this.isWireless == false) {
                 this.finalPrice = this.finalPrice.subtract(this.finalPrice.multiply(Cart.discount7));
+            } else {
+                this.finalPrice = this.finalPrice.subtract(this.finalPrice.multiply(Cart.discount2));
             }
-            this.finalPrice = this.finalPrice.subtract(this.finalPrice.multiply(Cart.discount2));
         }
     }
 

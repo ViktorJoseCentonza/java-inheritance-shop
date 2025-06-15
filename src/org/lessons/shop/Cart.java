@@ -35,7 +35,7 @@ public class Cart {
             String productBrand = userInput.nextLine();
             System.out.println("Please specify the product's price");
             BigDecimal productPrice = userInput.nextBigDecimal();
-            System.out.println("Please specify the product's iva (22% = 0,22)");
+            System.out.println("Please specify the product's iva (for 22% write 0,22)");
             BigDecimal productIva = userInput.nextBigDecimal();
 
             switch (userChoice) {
@@ -79,7 +79,7 @@ public class Cart {
             keepAliveString = userInput.nextLine();
         }
         System.out.println("do you have our fidelty card? (yes / no)");
-        if (!(userInput.nextLine() == "no")) {
+        if (!(userInput.nextLine().equals("no"))) {
             hasFideltyCard = true;
         }
 
@@ -93,5 +93,6 @@ public class Cart {
 
         System.out.println("Cart total is:" + totalCart);
         userInput.close();
+
     }
 }
